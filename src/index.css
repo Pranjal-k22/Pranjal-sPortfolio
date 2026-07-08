@@ -3,29 +3,29 @@
 
 @theme {
   /* Core Background & Text */
-  --color-background: #050208; /* Deep Black */
-  --color-foreground: #d2ddff; /* Light Blue for main text */
+  --color-background: #001621; /* Noturno (Deep Navy) */
+  --color-foreground: #eef2f6; /* Crisp off-white with a slight blue tint for readability */
 
-  /* UI Elements (Slightly lighter than background for depth) */
-  --color-card: #0a0512; 
-  --color-surface: #0e0719; 
+  /* UI Elements */
+  --color-card: #002436; /* Slightly lighter navy to lift project cards off the background */
+  --color-surface: #00314a; 
 
   /* Accent Colors */
-  --color-primary: #00ffd4; /* Neon Cyan (Buttons, active states) */
-  --color-primary-foreground: #050208; /* Dark text on Cyan buttons for contrast */
+  --color-primary: #FF4103; /* Vulcanico (Striking Orange for primary buttons & active states) */
+  --color-primary-foreground: #ffffff; /* White text on Orange buttons for perfect contrast */
 
-  --color-secondary: #5465ff; /* Royal Blue (Secondary buttons, badges) */
-  --color-secondary-foreground: #ffffff; /* White text on Royal Blue */
+  /* Secondary Elements */
+  --color-secondary: #004060; /* Medium navy for secondary buttons (e.g., GitHub repo links) */
+  --color-secondary-foreground: #eef2f6; 
 
   /* Subtle Elements & Borders */
-  --color-muted: #130b21; 
-  --color-muted-foreground: #6b7b9e; /* Dimmed text for subtitles/dates */
-
-  --color-border: #1e1236; 
+  --color-muted: #002e45; 
+  --color-muted-foreground: #8ea8b8; /* Dimmed blue-gray text for internship dates and tech tags */
+  --color-border: #004566; /* Clean separators between UI sections */
 
   /* Shapes & Highlights */
   --radius: 0.75rem;
-  --color-highlight: #00ffd4; /* Using Cyan for highlighting key terms */
+  --color-highlight: #FF4103; /* Orange highlights for hover effects */
 }
 
 @layer base {
@@ -49,27 +49,49 @@
 }
 
 @layer components {
+  /* Standard Glass: Great for background cards, skills containers, 
+    and floating navbars. 
+  */
   .glass {
-    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    background-color: color-mix(in srgb, var(--color-surface) 60%, transparent);
     backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
-  }
-
-  .glass-strong {
-    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(16px); /* Safari support */
     border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+    
+    /* Pro-Tip: A subtle inner white highlight gives dark glass a physical "edge" */
+    box-shadow: inset 0 1px 1px color-mix(in srgb, var(--color-foreground) 5%, transparent);
   }
 
+  /* Strong Glass: Use this for modals, prominent project cards, 
+    or form backgrounds where readability is critical. 
+  */
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 85%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+    box-shadow: inset 0 1px 1px color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  }
+
+  /* Glow Text: Used layered shadows. A single shadow looks muddy; 
+    layered shadows (10px, 20px, 40px) create a realistic Vulcanico neon glow. 
+  */
   .glow-text {
-    text-shadow: 0 0 30px
-      color-mix(in srgb, var(--color-primary) 50%, transparent);
+    text-shadow: 
+      0 0 10px color-mix(in srgb, var(--color-primary) 60%, transparent),
+      0 0 20px color-mix(in srgb, var(--color-primary) 40%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-primary) 20%, transparent);
   }
 
+  /* Glow Border: Perfect for hovering over your "View Live Site" buttons 
+    or highlighting your active project card. 
+  */
   .glow-border {
-    box-shadow: 0 0 20px
-        color-mix(in srgb, var(--color-primary) 20%, transparent),
-      inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+    border-color: var(--color-primary); /* Solidifies the physical border */
+    box-shadow: 
+      0 0 15px color-mix(in srgb, var(--color-primary) 30%, transparent),
+      inset 0 0 10px color-mix(in srgb, var(--color-primary) 10%, transparent);
+    transition: all 0.3s ease; /* Ensures smooth hover states */
   }
 }
 
