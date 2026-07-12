@@ -1,5 +1,5 @@
 
 
 export const Projects=()=>{
-    return <section>project</section>
+    return <section></section>
 };

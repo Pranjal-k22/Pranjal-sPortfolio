@@ -1,5 +1,5 @@
 
 
 export const Testimonials=()=>{
-    return <section>test</section>
+    return <section></section>
 };
